@@ -6,11 +6,21 @@ const router = vertex.router()
 /*  This is the home route. It renders the index.mustache page from the views directory.
 	Data is rendered using the Mustache templating engine. For more
 	information, view here: https://mustache.github.io/#demo */
+// router.get('/', function(req, res){
+//     if(req.vertexSession.user) {
+//         res.redirect('/stocks')
+//     } else {
+//         res.render('index', {text: 'This is the dynamic data. Open index.js from the routes directory to see.'})
+//     }
+// })
+
 router.get('/', function(req, res){
     if(req.vertexSession.user) {
         res.redirect('/stocks')
     } else {
-        res.render('index', {text: 'This is the dynamic data. Open index.js from the routes directory to see.'})
+        let loginmessage = req.query.loginmessage
+        let signupmessage = req.query.signupmessage
+        res.render('index', {loginmessage: loginmessage, signupmessage: signupmessage})
     }
 })
 
