@@ -7,16 +7,21 @@ const router = vertex.router()
 	Data is rendered using the Mustache templating engine. For more
 	information, view here: https://mustache.github.io/#demo */
 router.get('/', function(req, res){
-	res.render('index', {text: 'This is the dynamic data. Open index.js from the routes directory to see.'})
+    if(req.vertexSession.user) {
+        res.redirect('/stocks')
+    } else {
+        res.render('index', {text: 'This is the dynamic data. Open index.js from the routes directory to see.'})
+    }
 })
 
 router.get('/stocks', function(req, res) {
-    if (!req.vertexSession) res.redirect('/')
-    if (!req.vertexSession.user) res.redirect('/')
-
-    res.status(200).json({
-        confirmation: 'success'
-    })
+    if(req.vertexSession.user) {
+        res.status(200).json({
+            confirmation: 'success'
+        })
+    } else {
+        res.redirect('/')
+    }
 })
 
 router.post('/login', function(req, res) {
