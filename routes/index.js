@@ -46,4 +46,9 @@ router.post('/signup', function(req, res) {
     })
 })
 
+router.get('/logout', (req, res) => {
+    req.vertexSession.reset()
+    res.redirect('/')
+})
+
 module.exports = router
