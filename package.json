@@ -1,0 +1,23 @@
+{
+  "name": "StockTracker",
+  "version": "0.0.0",
+  "server": false,
+  "private": true,
+  "scripts": {
+    "test": "",
+    "build": ""
+  },
+  "dependencies": {
+    "nodemon": "latest",
+    "turbo360": "latest",
+    "vertex360": "latest"
+  },
+  "devDependencies": {
+    "express": "latest",
+    "rimraf": "latest"
+  },
+  "deploy": [
+    "."
+  ],
+  "format": "vertex"
+}
