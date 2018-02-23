@@ -26,9 +26,10 @@ router.get('/', function(req, res){
 
 router.get('/stocks', function(req, res) {
     if(req.vertexSession.user) {
-        res.status(200).json({
-            confirmation: 'success'
-        })
+        // res.status(200).json({
+        //     confirmation: 'success'
+        // })
+        res.render('stocks')
     } else {
         res.redirect('/')
     }
