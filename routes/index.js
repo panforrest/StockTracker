@@ -46,8 +46,24 @@ router.post('/login', function(req, res) {
     })
 })
 
+
+router.post('/stocks', function(req, res) {
+    turbo.fetchUser(req.vertexSession.user.id)
+    .then(data => {
+        let newStocks = data.stockinput
+        newStocks.push(req.body.stockinput)
+        turbo.updateUser(req.vertexSession.user.id, {stockinput: newStocks})
+        .then(data => {
+            res.redirect('/stocks')
+        })
+    })
+    
+})
+
 router.post('/signup', function(req, res) {
-    turbo.createUser(req.body)
+    let user = req.body;
+    user.stockinput = []
+    turbo.createUser(user)
     .then(data => {
         req.vertexSession.user = {id: data.id}
         res.redirect('/stocks')
