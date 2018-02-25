@@ -13,7 +13,13 @@
   </form>
   <ul>
     {{#stockinput}}
-    <li>{{.}}</li>
+    <li>
+      <form action="/deletestock" method="post">
+        {{.}}
+        <input type="hidden" name="stockdelete" value="{{.}}">
+        <button type="submit">Delete</button>
+      </form>
+    </li>
     {{/stockinput}}
   </ul>
   <!-- Turbo library imports: jQuery, Turbo CDN, sample app.js.

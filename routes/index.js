@@ -80,4 +80,20 @@ router.get('/logout', (req, res) => {
     res.redirect('/')
 })
 
+router.post('/deletestock', function(req, res){
+    turbo.fetchUser(req.vertexSession.user.id)
+    .then(data => {
+        let newStocks = data.stockinput
+        let index = newStocks.indexOf(req.body.stockdelete)
+        if (index > -1) {
+            newStocks.splice(index, 1);
+        }
+
+        turbo.updateUser(req.vertexSession.user.id, {stockinput: newStocks})
+        .then(data => {
+            res.redirect('/stocks');
+        })
+    })
+})
+
 module.exports = router
