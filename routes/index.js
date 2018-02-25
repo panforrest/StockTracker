@@ -26,10 +26,12 @@ router.get('/', function(req, res){
 
 router.get('/stocks', function(req, res) {
     if(req.vertexSession.user) {
-        // res.status(200).json({
-        //     confirmation: 'success'
-        // })
-        res.render('stocks')
+        turbo.fetchUser(req.vertexSession.user.id)
+        // console.log(JSON.stringify(data.stockinput))
+        // console.log(req.vertexSession.user.id)
+        .then(data => {
+            res.render('stocks', {stockinput: data.stockinput})
+        })
     } else {
         res.redirect('/')
     }

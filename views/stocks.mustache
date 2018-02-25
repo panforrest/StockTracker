@@ -12,6 +12,9 @@
     <button type="submit">Add New</button>
   </form>
   <ul>
+    {{#stockinput}}
+    <li>{{.}}</li>
+    {{/stockinput}}
   </ul>
   <!-- Turbo library imports: jQuery, Turbo CDN, sample app.js.
   NOTE: These should be minified in a build script -->
